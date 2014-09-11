@@ -13,90 +13,21 @@ body{
     border: 4px solid #000;
     border-radius: 10px;
     background-color: #fff;
-/*
-	-webkit-animation: spin 6s linear 0s infinite normal;
-	-moz-animation: spin 6s linear 0s infinite normal;
-	-ms-animation: spin 6s linear 0s infinite normal;
-	-o-animation: spin 6s linear 0s infinite normal;
-	animation: spin 6s linear 0s infinite normal;
-*/
 }
-@keyframes spin {
-  0% { transform: rotate(360deg); }
-  100% { transform: rotate(0deg); }
-}
-@-webkit-keyframes spin {
-  0% {-webkit-transform: rotate(90deg); }
-  100% { -webkit-transform: rotate(0deg); }
-}
-@-ms-keyframes spin {
-  0% {-ms-transform: rotate(360deg); }
-  100% { -ms-transform: rotate(0deg); }
-}
-@-moz-keyframes spin {
-  0% { -moz-transform: rotate(360deg); }
-  100% { -moz-transform: rotate(0deg); }
-}
-@-o-keyframes spin {
-  0% { -o-transform: rotate(360deg); }
-  100% { -o-transform: rotate(0deg); }
-}
-/*
-#divider{
-	position: absolute;
-	background-color: #000;
-}
-*/
-
 .circle {
     height: 20px;
     width: 20px;
-    /* margin: 8px; */
     border-radius:20px;
     background-color: #000;
 }
 </style>
 </head>
 <body>
-
-<!--
-<div id="domino">
-	<div id="dots1"></div>
-	<div id="dots2"></div>
-</div>
--->
 <div id="stage">
 </div>
 
 
 <script type="text/javascript">
-
-	/*
-document.getElementById("domino").style.width = "100px";
-	document.getElementById("domino").style.height = "200px";
-*/
-	
-	/*
-document.getElementById("divider").style.width = "98px";
-	document.getElementById("divider").style.height = "2px";
-	document.getElementById("divider").style.top = "100px";
-*/
-	
-	/*
-document.getElementById("dots1").style.width = "100px";
-	document.getElementById("dots1").style.height = "100px";
-	document.getElementById("dots1").style.borderBottom = "thin solid #0000FF";
-	
-	document.getElementById("dots2").style.width = "100px";
-	document.getElementById("dots2").style.height = "100px";
-	document.getElementById("dots2").style.borderTop = "thin solid #0000FF";
-	
-	addDots("dots1");
-	addDots("dots2");
-*/
-	
-	
-	
 	//Domino face class
 	function DominoFace(elemPos){
 		this.face = document.createElement("div");
@@ -126,41 +57,11 @@ document.getElementById("dots1").style.width = "100px";
 			case 0:
 			break;
 			case 1:
-				/*
-var oneDot = document.createElement("div");
-				oneDot.setAttribute("class", "circle");
-				this.face.appendChild(oneDot);
-				oneDot.style.position = "relative";
-				oneDot.style.top = (parseInt(this.face.style.height) - 10)/2 - 4 + "px";
-				oneDot.style.left = (parseInt(this.face.style.width) - 10)/2 - 4 + "px";
-*/
-				
 				createDot(this.face, (parseInt(this.face.style.width) - 10)/2 - 4, (parseInt(this.face.style.height) - 10)/2 - 4);
 				break;
 			case 2:
-				/*
-var oneDot = document.createElement("div");
-				oneDot.setAttribute("class", "circle");
-				this.face.appendChild(oneDot);
-				oneDot.style.position = "relative";
-				oneDot.style.left = (parseInt(this.face.style.width) - 20 - 8) + "px";
-				oneDot.style.top = "8px";
-*/
-				
 				createDot(this.face, (parseInt(this.face.style.width) - 20 - 8), 8);
-				
-				
-				/*
-var twoDot = document.createElement("div");
-				twoDot.setAttribute("class", "circle");
-				this.face.appendChild(twoDot);
-				twoDot.style.position = "relative";
-				twoDot.style.left = "8px";
-				twoDot.style.top = (parseInt(this.face.style.height) - 48 - 4) + "px";
-*/
-				
-				createDot(this.face, 8, (parseInt(this.face.style.height) - 20 - 8));
-				
+				createDot(this.face, 8, (parseInt(this.face.style.height) - 20 - 8));				
 				break;
 			case 3:
 				createDot(this.face, (parseInt(this.face.style.width) - 20 - 8), 8);
@@ -201,10 +102,6 @@ var twoDot = document.createElement("div");
 		dot.style.position = "absolute";
 		dot.style.left = leftPos + "px";
 		dot.style.top = topPos + "px";
-		/*
-dot.style.left = leftPos + "px";
-		dot.style.top = topPos + "px";
-*/
 	}
 	
 	
@@ -228,10 +125,6 @@ dot.style.left = leftPos + "px";
 	
 	Domino.prototype.getDisplay = function(){
 		return this.domino;
-	}
-	
-	Domino.prototype.resize = function(){
-		//this.domino.width
 	}
 	
 	var counter_clockwiseBtn = createButton("counter_clockwise");
@@ -275,18 +168,6 @@ dot.style.left = leftPos + "px";
 			domino.getDisplay().style.MozTransform = (domino.getDisplay().style.MozTransform + "").replace(patt, "") + "rotate(" + domino.rotate + "deg)";
 			domino.getDisplay().style.OTransform = (domino.getDisplay().style.OTransform + "").replace(patt, "") + "rotate(" + domino.rotate + "deg)";
 			domino.getDisplay().style.transform = (domino.getDisplay().style.transform + "").replace(patt, "") + "rotate(" + domino.rotate + "deg)";
-			
-			
-			//domino.getDisplay().style.removeProperty("-" + cssPrefix + "-transform");
-			/* domino.getDisplay().setAttribute("style","width: 100px; height: 200px;" +  "-" + cssPrefix + "-transform:rotate(" + domino.rotate + "deg);" + "-" + cssPrefix + "-transform:scale(" + 2 + ", " + 2 + ")"); */
-			//domino.getDisplay().setAttribute("style", domino.getDisplay().getAttribute("style") +  "-" + cssPrefix + "-transform:rotate(" + domino.rotate + "deg);");
-			
-			/*
-domino.getDisplay().setAttribute("style", domino.getDisplay().getAttribute("style") +  "-" + cssPrefix + "-transform:rotate(" + domino.rotate + "deg)" +  " " + "scale(" + 2 + ", " + 2 + ");");
-			
-			// + "-" + cssPrefix + "-transform:scale(" + 2 + ", " + 2 + ")"
-			alert(window.getComputedStyle(domino.getDisplay(), null).getPropertyValue("-webkit-transform"));
-*/
 		}
 	}
 	scale();
