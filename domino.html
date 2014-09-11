@@ -295,7 +295,7 @@ domino.getDisplay().setAttribute("style", domino.getDisplay().getAttribute("styl
 		scale();
 	}
 	function scale(){
-		var patt = /scale\(-?\d*.?\d+, -?\d*.?\d+\)/ig;
+		var patt = /scale\(-?\d*.?\d+(, -?\d*.?\d+)?\)/ig;
 		var boxDim = 0;
 		var scale = 1;
 		if(window.innerHeight > window.innerWidth){
