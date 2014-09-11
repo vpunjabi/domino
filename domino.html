@@ -28,7 +28,8 @@ body{
 
 
 <script type="text/javascript">
-	//Domino face class
+
+	/** START - Domino face class **/
 	function DominoFace(elemPos){
 		this.face = document.createElement("div");
 		this.face.style.width = "100px";
@@ -48,11 +49,14 @@ body{
 	}
 	
 	DominoFace.prototype.refresh = function(){
+		//num determines the number of dots on the face
 		var num = Math.floor(Math.random() * 7);
 		var myNode = this.face;
+		//remove previous dots
 		while (myNode.firstChild) {
 		    myNode.removeChild(myNode.firstChild);
 		}
+		//add dots onto domino face
 		switch(num){
 			case 0:
 			break;
@@ -94,18 +98,10 @@ body{
 			break;
 		}
 	};
-	
-	function createDot(parent, leftPos, topPos){
-		var dot = document.createElement("div");
-		dot.setAttribute("class", "circle");
-		parent.appendChild(dot);
-		dot.style.position = "absolute";
-		dot.style.left = leftPos + "px";
-		dot.style.top = topPos + "px";
-	}
+	/** END - Domino face class **/
 	
 	
-	//Domino class
+	/** START - Domino class **/
 	function Domino(){
 		this.domino = document.createElement("div");
 		this.domino.style.width = "100px";
@@ -126,21 +122,28 @@ body{
 	Domino.prototype.getDisplay = function(){
 		return this.domino;
 	}
-	
-	var counter_clockwiseBtn = createButton("counter_clockwise");
-	document.getElementById("stage").appendChild(counter_clockwiseBtn);
-	counter_clockwiseBtn.addEventListener("click", function(){rotate("counter_clockwise")});
-	
-	var clockwiseBtn = createButton("clockwise");
-	document.getElementById("stage").appendChild(clockwiseBtn);
-	clockwiseBtn.addEventListener("click", function(){rotate("clockwise")});
+	/** END - Domino class **/
 	
 	
-	var domino = new Domino();
-	document.getElementById("stage").appendChild(domino.getDisplay());
+	/**
+		Creates dot and places it on face of domino
+		@param parent	face of domino to which the dot should be added on
+		@param leftPos	left position of dot
+		@param topPos	top position of dot
+	**/
+	function createDot(parent, leftPos, topPos){
+		var dot = document.createElement("div");
+		dot.setAttribute("class", "circle");
+		parent.appendChild(dot);
+		dot.style.position = "absolute";
+		dot.style.left = leftPos + "px";
+		dot.style.top = topPos + "px";
+	}
 	
-	window.addEventListener("resize", onWindowResize);
-	
+	/**
+		Creates button
+		@param value	text value of button
+	**/
 	function createButton(value){
 		var btn = document.createElement("input");
 		btn.setAttribute("type", "button");
@@ -148,6 +151,10 @@ body{
 		return btn;
 	}
 	
+	/**
+		Rotates the domino display object
+		@param direction	the direction of rotation. If value is "clockwise" then rotates clockwise otherwise rotates counter-clockwise.
+	**/
 	function rotate(direction){
 		//Detects browser prefix - copied from http://davidwalsh.name/vendor-prefix
 		
@@ -170,7 +177,6 @@ body{
 			domino.getDisplay().style.transform = (domino.getDisplay().style.transform + "").replace(patt, "") + "rotate(" + domino.rotate + "deg)";
 		}
 	}
-	scale();
 	
 	function onWindowResize(){
 		scale();
@@ -199,6 +205,25 @@ body{
 		domino.getDisplay().style.left = (window.innerWidth - parseInt(domino.getDisplay().style.width) * scale)/2 + "px";
 		domino.getDisplay().style.top = (window.innerHeight - parseInt(domino.getDisplay().style.height) * scale)/2 + "px";
 	}
+	
+	
+	/** Start of program **/
+	
+	var counter_clockwiseBtn = createButton("counter_clockwise");
+	document.getElementById("stage").appendChild(counter_clockwiseBtn);
+	counter_clockwiseBtn.addEventListener("click", function(){rotate("counter_clockwise")});
+	
+	var clockwiseBtn = createButton("clockwise");
+	document.getElementById("stage").appendChild(clockwiseBtn);
+	clockwiseBtn.addEventListener("click", function(){rotate("clockwise")});
+	
+	
+	var domino = new Domino();
+	document.getElementById("stage").appendChild(domino.getDisplay());
+	
+	scale();
+	
+	window.addEventListener("resize", onWindowResize);
 	
 </script>
 
